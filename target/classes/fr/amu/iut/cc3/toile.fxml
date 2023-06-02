@@ -8,7 +8,13 @@
 <?import javafx.scene.text.Text?>
 
 
-<HBox id="scene" prefHeight="420.0" prefWidth="650.0" spacing="20.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" >
+<?import javafx.scene.layout.VBox?>
+<?import fr.amu.iut.cc3.LineCompetence?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import fr.amu.iut.cc3.LineCompetence?>
+<?import javafx.scene.control.Button?>
+<HBox id="scene" prefHeight="420.0" prefWidth="650.0" spacing="20.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.amu.iut.cc3.ToileController">
     <Pane prefHeight="400.0" prefWidth="400.0" >
         <Circle centerX="200.0" centerY="200.0" radius="200.0" styleClass="toile"/>
         <Circle centerX="200.0" centerY="200.0" radius="150.0" styleClass="toile"/>
@@ -29,4 +35,36 @@
         <Text x="26" y="99" text="Compétence 6" />
         <Pane fx:id="toile" styleClass="toile"/>
     </Pane>
+    <VBox layoutY="400" id="compt-container" fx:id="rightVContainer" spacing="50" prefWidth="250.0" prefHeight="420" alignment="CENTER">
+        <VBox spacing="20" fx:id="valueVContainer">
+            <HBox>
+                <Label text="Compétence 1 - Réaliser"/>
+                <TextField/>
+            </HBox>
+            <HBox>
+                <Label text="Compétence 2 - Optimiser"/>
+                <TextField/>
+            </HBox>
+            <HBox>
+                <Label text="Compétence 3 - Administrer"/>
+                <TextField/>
+            </HBox>
+            <HBox>
+                <Label text="Compétence 4 - Gérer"/>
+                <TextField/>
+            </HBox>
+            <HBox>
+                <Label text="Compétence 5 - Conduire"/>
+                <TextField/>
+            </HBox>
+            <HBox>
+                <Label text="Compétence 6 - Collaborer"/>
+                <TextField/>
+            </HBox>
+        </VBox>
+        <HBox fx:id="buttonBar" spacing="20" alignment="CENTER_RIGHT">
+            <Button fx:id="buttonTracer" text="Tracer"/>
+            <Button fx:id="buttonVider" text="Vider"/>
+        </HBox>
+    </VBox>
 </HBox>

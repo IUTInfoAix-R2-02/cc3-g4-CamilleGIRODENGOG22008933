@@ -12,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.effect.Light;
 import javafx.scene.input.KeyEvent;
@@ -47,6 +48,8 @@ public class ToileController implements Initializable {
     private TextField comp5Val;
     @FXML
     private TextField comp6Val;
+    @FXML
+    private Label labelError;
 
     private ArrayList<Circle> listPointsComp = new ArrayList<>();
 
@@ -79,10 +82,25 @@ public class ToileController implements Initializable {
     private void placePointComp(TextField textCompVal, int compID){
         //System.out.println("TextField Comp action.");
         //System.out.print(listPointsComp.get(compID - 1));
-        listPointsComp.get(compID - 1).setVisible(true);
-        listPointsComp.get(compID - 1).setCenterX(getXRadarChart(Integer.valueOf(textCompVal.getText()), compID));
-        listPointsComp.get(compID - 1).setCenterY(getYRadarChart(Integer.valueOf(textCompVal.getText()), compID));
+        if (verifError(textCompVal) == false) {
+            labelError.setText("");
+            listPointsComp.get(compID - 1).setVisible(true);
+            listPointsComp.get(compID - 1).setCenterX(getXRadarChart(Integer.valueOf(textCompVal.getText()), compID));
+            listPointsComp.get(compID - 1).setCenterY(getYRadarChart(Integer.valueOf(textCompVal.getText()), compID));
+        }
+        else {
+            labelError.setText("Erreur de saisie :\nLes valeurs doivent être entre 0 et 20");
+        }
+    }
 
+    /**
+     * Verify if the value inside the textfield is correct (between 0 and 20)
+     * @param textCompVal the text field whose value is evaluated
+     * @return true if there is an error. False if there is no error.
+     */
+    private boolean verifError(TextField textCompVal){
+        if (Integer.valueOf(textCompVal.getText()) >= 0 && Integer.valueOf(textCompVal.getText()) <= 20) return false;
+        return true;
     }
 
     int getXRadarChart(double value, int axe ){

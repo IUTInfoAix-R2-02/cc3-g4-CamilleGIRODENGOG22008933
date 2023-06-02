@@ -67,18 +67,22 @@ public class ToileController implements Initializable {
     }
 
     private void createEventHandler(){
-        comp1Val.addEventHandler(ActionEvent.ACTION, actionEvent -> {placePointComp(comp1Val);});
+        comp1Val.addEventHandler(ActionEvent.ACTION, actionEvent -> {placePointComp(comp1Val, 1);});
+        comp2Val.addEventHandler(ActionEvent.ACTION, actionEvent -> {placePointComp(comp2Val, 2);});
+        comp3Val.addEventHandler(ActionEvent.ACTION, actionEvent -> {placePointComp(comp3Val, 3);});
+        comp4Val.addEventHandler(ActionEvent.ACTION, actionEvent -> {placePointComp(comp4Val, 4);});
+        comp5Val.addEventHandler(ActionEvent.ACTION, actionEvent -> {placePointComp(comp5Val, 5);});
+        comp6Val.addEventHandler(ActionEvent.ACTION, actionEvent -> {placePointComp(comp6Val, 6);});
+
     }
 
-    private void placePointComp(TextField textCompVal){
-        if (textCompVal.getId().equals("comp1Val")){
-            //System.out.println("TextField Comp 1 action.");
-            System.out.print(listPointsComp.get(0));
-            listPointsComp.get(0).setVisible(true);
-            listPointsComp.get(0).setCenterX(getXRadarChart(Integer.valueOf(textCompVal.getText()), 1));
-            listPointsComp.get(0).setCenterY(getYRadarChart(Integer.valueOf(textCompVal.getText()), 1));
+    private void placePointComp(TextField textCompVal, int compID){
+        //System.out.println("TextField Comp action.");
+        //System.out.print(listPointsComp.get(compID - 1));
+        listPointsComp.get(compID - 1).setVisible(true);
+        listPointsComp.get(compID - 1).setCenterX(getXRadarChart(Integer.valueOf(textCompVal.getText()), compID));
+        listPointsComp.get(compID - 1).setCenterY(getYRadarChart(Integer.valueOf(textCompVal.getText()), compID));
 
-        }
     }
 
     int getXRadarChart(double value, int axe ){

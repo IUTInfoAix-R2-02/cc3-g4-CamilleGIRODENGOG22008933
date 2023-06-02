@@ -13,10 +13,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.effect.Light;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 
 import java.net.URL;
@@ -32,6 +34,8 @@ public class ToileController implements Initializable {
     private static int noteMaximale = 20;
 
     @FXML
+    private Pane radarGraph;
+    @FXML
     private TextField comp1Val;
     @FXML
     private TextField comp2Val;
@@ -44,9 +48,19 @@ public class ToileController implements Initializable {
     @FXML
     private TextField comp6Val;
 
+    private ArrayList<Circle> listPointsComp = new ArrayList<>();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        // Ajout des points associés à chaque compétence
+        for (int count = 0; count < 6; ++count){
+            listPointsComp.add(new Circle(5));
+        }
+        for (Circle point : listPointsComp){
+            point.setVisible(false);
+            radarGraph.getChildren().add(point);
+        }
 
         createEventHandler();
 
@@ -58,7 +72,12 @@ public class ToileController implements Initializable {
 
     private void placePointComp(TextField textCompVal){
         if (textCompVal.getId().equals("comp1Val")){
-            System.out.println("TextField Comp 1 action.");
+            //System.out.println("TextField Comp 1 action.");
+            System.out.print(listPointsComp.get(0));
+            listPointsComp.get(0).setVisible(true);
+            listPointsComp.get(0).setCenterX(getXRadarChart(Integer.valueOf(textCompVal.getText()), 1));
+            listPointsComp.get(0).setCenterY(getYRadarChart(Integer.valueOf(textCompVal.getText()), 1));
+
         }
     }
 

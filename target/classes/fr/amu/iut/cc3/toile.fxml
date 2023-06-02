@@ -15,7 +15,7 @@
 <?import fr.amu.iut.cc3.LineCompetence?>
 <?import javafx.scene.control.Button?>
 <HBox id="scene" prefHeight="420.0" prefWidth="650.0" spacing="20.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.amu.iut.cc3.ToileController">
-    <Pane prefHeight="400.0" prefWidth="400.0" >
+    <Pane prefHeight="400.0" prefWidth="400.0" fx:id="radarGraph">
         <Circle centerX="200.0" centerY="200.0" radius="200.0" styleClass="toile"/>
         <Circle centerX="200.0" centerY="200.0" radius="150.0" styleClass="toile"/>
         <Circle centerX="200.0" centerY="200.0" radius="100.0" styleClass="toile"/>

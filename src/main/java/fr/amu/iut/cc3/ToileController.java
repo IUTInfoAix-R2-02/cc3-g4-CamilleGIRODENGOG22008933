@@ -31,9 +31,35 @@ public class ToileController implements Initializable {
     private static int angleDepart = 90;
     private static int noteMaximale = 20;
 
+    @FXML
+    private TextField comp1Val;
+    @FXML
+    private TextField comp2Val;
+    @FXML
+    private TextField comp3Val;
+    @FXML
+    private TextField comp4Val;
+    @FXML
+    private TextField comp5Val;
+    @FXML
+    private TextField comp6Val;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        createEventHandler();
+
+    }
+
+    private void createEventHandler(){
+        comp1Val.addEventHandler(ActionEvent.ACTION, actionEvent -> {placePointComp(comp1Val);});
+    }
+
+    private void placePointComp(TextField textCompVal){
+        if (textCompVal.getId().equals("comp1Val")){
+            System.out.println("TextField Comp 1 action.");
+        }
     }
 
     int getXRadarChart(double value, int axe ){
@@ -45,5 +71,7 @@ public class ToileController implements Initializable {
         return (int) (rayonCercleExterieur - Math.sin(Math.toRadians(angleDepart - (axe-1)  * angleEnDegre)) * rayonCercleExterieur
                 *  (value / noteMaximale));
     }
+
+
 
 }

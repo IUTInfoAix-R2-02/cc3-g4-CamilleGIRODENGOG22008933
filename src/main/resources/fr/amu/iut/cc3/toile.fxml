@@ -36,30 +36,30 @@
         <Pane fx:id="toile" styleClass="toile"/>
     </Pane>
     <VBox layoutY="400" id="compt-container" fx:id="rightVContainer" spacing="50" prefWidth="250.0" prefHeight="420" alignment="CENTER">
-        <VBox spacing="20" fx:id="valueVContainer" >
+        <VBox spacing="20" fx:id="valueCompContainer" >
             <HBox>
                 <Label text="Compétence 1 - Réaliser"/>
-                <TextField/>
+                <TextField fx:id="comp1Val"/>
             </HBox>
             <HBox>
                 <Label text="Compétence 2 - Optimiser"/>
-                <TextField/>
+                <TextField fx:id="comp2Val"/>
             </HBox>
             <HBox>
                 <Label text="Compétence 3 - Administrer"/>
-                <TextField/>
+                <TextField fx:id="comp3Val"/>
             </HBox>
             <HBox>
                 <Label text="Compétence 4 - Gérer"/>
-                <TextField/>
+                <TextField fx:id="comp4Val"/>
             </HBox>
             <HBox>
                 <Label text="Compétence 5 - Conduire"/>
-                <TextField/>
+                <TextField fx:id="comp5Val"/>
             </HBox>
             <HBox>
                 <Label text="Compétence 6 - Collaborer"/>
-                <TextField/>
+                <TextField fx:id="comp6Val"/>
             </HBox>
         </VBox>
         <HBox fx:id="buttonBar" spacing="20" alignment="CENTER_RIGHT">

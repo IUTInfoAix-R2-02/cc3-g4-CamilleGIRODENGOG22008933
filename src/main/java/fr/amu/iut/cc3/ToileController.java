@@ -83,7 +83,7 @@ public class ToileController implements Initializable {
         //System.out.println("TextField Comp action.");
         //System.out.print(listPointsComp.get(compID - 1));
         if (verifError(textCompVal) == false) {
-            labelError.setText("");
+            verifAllErrors();
             listPointsComp.get(compID - 1).setVisible(true);
             listPointsComp.get(compID - 1).setCenterX(getXRadarChart(Integer.valueOf(textCompVal.getText()), compID));
             listPointsComp.get(compID - 1).setCenterY(getYRadarChart(Integer.valueOf(textCompVal.getText()), compID));
@@ -100,10 +100,17 @@ public class ToileController implements Initializable {
      * @return true if there is an error. False if there is no error.
      */
     private boolean verifError(TextField textCompVal){
+        if (textCompVal.getText() == null || textCompVal.getText().length() == 0) return false;
         if (Integer.valueOf(textCompVal.getText()) >= 0 && Integer.valueOf(textCompVal.getText()) <= 20) return false;
         return true;
     }
 
+    private boolean verifAllErrors(){
+        if (verifError(comp1Val) || verifError(comp2Val) || verifError(comp3Val)
+            || verifError(comp4Val) || verifError(comp5Val) || verifError(comp6Val)) return true;
+        labelError.setText("");
+        return false;
+    }
 
     public void viderClic(){
         for (Circle point : listPointsComp){

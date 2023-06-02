@@ -52,19 +52,13 @@ public class ToileController implements Initializable {
     private Label labelError;
 
     private ArrayList<Circle> listPointsComp = new ArrayList<>();
+    private ArrayList<Line> listRadarLines = new ArrayList<>();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        // Ajout des points associés à chaque compétence
-        for (int count = 0; count < 6; ++count){
-            listPointsComp.add(new Circle(5));
-        }
-        for (Circle point : listPointsComp){
-            point.setVisible(false);
-            radarGraph.getChildren().add(point);
-        }
-
+        setUpListPoints();
+        setUpListLines();
         createEventHandler();
 
     }
@@ -77,6 +71,43 @@ public class ToileController implements Initializable {
         comp5Val.addEventHandler(ActionEvent.ACTION, actionEvent -> {placePointComp(comp5Val, 5);});
         comp6Val.addEventHandler(ActionEvent.ACTION, actionEvent -> {placePointComp(comp6Val, 6);});
 
+    }
+
+    private void setUpListPoints(){
+        // Ajout des points associés à chaque compétence
+        for (int count = 0; count < 6; ++count){
+            listPointsComp.add(new Circle(5));
+            listPointsComp.get(count).centerXProperty();
+        }
+        for (Circle point : listPointsComp){
+            resetPoint(point);
+            radarGraph.getChildren().add(point);
+        }
+    }
+
+    private void setUpListLines(){
+        // Ajout des lignes invisibles pour le moment
+        for (int count = 0; count < 5; ++count){
+            listRadarLines.add(new Line());
+            // Binding pour pas à avoir à changer les valeur lors du tracé
+            listRadarLines.get(count).startXProperty().bind(listPointsComp.get(count).centerXProperty());
+            listRadarLines.get(count).startYProperty().bind(listPointsComp.get(count).centerYProperty());
+            listRadarLines.get(count).endXProperty().bind(listPointsComp.get(count + 1).centerXProperty());
+            listRadarLines.get(count).endYProperty().bind(listPointsComp.get(count + 1).centerYProperty());
+
+        }
+        // Ligne reliant le point 0 (Comp 1) au point 5 (Comp 6)
+        listRadarLines.add(new Line());
+        listRadarLines.get(5).startXProperty().bind(listPointsComp.get(0).centerXProperty());
+        listRadarLines.get(5).startYProperty().bind(listPointsComp.get(0).centerYProperty());
+        listRadarLines.get(5).endXProperty().bind(listPointsComp.get(5).centerXProperty());
+        listRadarLines.get(5).endYProperty().bind(listPointsComp.get(5).centerYProperty());
+
+
+        for (Line line : listRadarLines){
+            line.setVisible(false);
+            radarGraph.getChildren().add(line);
+        }
     }
 
     private void placePointComp(TextField textCompVal, int compID){
@@ -112,9 +143,21 @@ public class ToileController implements Initializable {
         return false;
     }
 
+    public void  tracerClic(){
+        for (Line line : listRadarLines){
+            System.out.println(line);
+            line.setVisible(true);
+        }
+    }
+
     public void viderClic(){
+        // Reset tt les points
         for (Circle point : listPointsComp){
             resetPoint(point);
+        }
+        // Reset tt les lignes
+        for (Line line : listRadarLines){
+            line.setVisible(false);
         }
         // Reset text de tous les text field de comp
         comp1Val.setText("");

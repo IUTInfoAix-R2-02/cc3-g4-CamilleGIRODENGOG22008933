@@ -64,7 +64,7 @@
         </VBox>
         <Label fx:id="labelError" text="" textFill="red"/>
         <HBox fx:id="buttonBar" spacing="20" alignment="CENTER_RIGHT">
-            <Button fx:id="buttonTracer" text="Tracer"/>
+            <Button fx:id="buttonTracer" text="Tracer" onAction="#tracerClic"/>
             <Button fx:id="buttonVider" text="Vider" onAction="#viderClic"/>
         </HBox>
     </VBox>

@@ -89,6 +89,7 @@ public class ToileController implements Initializable {
             listPointsComp.get(compID - 1).setCenterY(getYRadarChart(Integer.valueOf(textCompVal.getText()), compID));
         }
         else {
+            resetPoint(listPointsComp.get(compID - 1));
             labelError.setText("Erreur de saisie :\nLes valeurs doivent être entre 0 et 20");
         }
     }
@@ -101,6 +102,31 @@ public class ToileController implements Initializable {
     private boolean verifError(TextField textCompVal){
         if (Integer.valueOf(textCompVal.getText()) >= 0 && Integer.valueOf(textCompVal.getText()) <= 20) return false;
         return true;
+    }
+
+
+    public void viderClic(){
+        for (Circle point : listPointsComp){
+            resetPoint(point);
+        }
+        // Reset text de tous les text field de comp
+        comp1Val.setText("");
+        comp2Val.setText("");
+        comp3Val.setText("");
+        comp4Val.setText("");
+        comp5Val.setText("");
+        comp6Val.setText("");
+        // Reset le message d'erreur
+        labelError.setText("");
+
+    }
+
+    private void resetPoint(Circle point){
+        // Point n'est plus visible
+        point.setVisible(false);
+        // Reset placement point au centre du cercle radar
+        point.setCenterX(getXRadarChart(0, 1));
+        point.setCenterY(getYRadarChart(0, 1));
     }
 
     int getXRadarChart(double value, int axe ){
